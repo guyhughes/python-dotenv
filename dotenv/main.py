@@ -106,7 +106,7 @@ def parse_dotenv_from_fd(f):
         # Remove any leading and trailing spaces in key, value
         k, v = k.strip(), v.strip()
 
-        if len(v) > 2:
+        if len(v) >= 2:
             quoted = (v[0] == v[len(v) - 1] == '"' or
                       v[0] == v[len(v) - 1] == "'")
 
