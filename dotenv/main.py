@@ -93,22 +93,27 @@ def dotenv_values(dotenv_path):
 
 def parse_dotenv(dotenv_path):
     with open(dotenv_path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#') or '=' not in line:
-                continue
-            k, v = line.split('=', 1)
+        return parse_dotenv_from_fd(f)
 
-            # Remove any leading and trailing spaces in key, value
-            k, v = k.strip(), v.strip()
 
-            if len(v) > 0:
-                quoted = v[0] == v[len(v) - 1] == '"'
+def parse_dotenv_from_fd(f):
+    for line in f:
+        line = line.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+        k, v = line.split('=', 1)
 
-                if quoted:
-                    v = decode_escaped(v[1:-1])
+        # Remove any leading and trailing spaces in key, value
+        k, v = k.strip(), v.strip()
 
-            yield k, v
+        if len(v) > 2:
+            quoted = (v[0] == v[len(v) - 1] == '"' or
+                      v[0] == v[len(v) - 1] == "'")
+
+            if quoted:
+                v = decode_escaped(v[1:-1])
+
+        yield k, v
 
 
 def resolve_nested_variables(values):
