@@ -5,13 +5,13 @@ with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 setup(
-    name="python-dotenv",
-    description="Add .env support to your django/flask apps in development and deployments",
+    name="python-dotenv-ng",
+    description="",
     long_description=readme,
-    version="0.6.1",
-    author="Saurabh Kumar",
-    author_email="me+github@saurabh-kumar.com",
-    url="http://github.com/theskumar/python-dotenv",
+    version="0.0.0",
+    author="",
+    author_email="",
+    url="",
     keywords=['environment variables', 'deployments', 'settings', 'env', 'dotenv',
               'configurations', 'python'],
     packages=['dotenv'],
